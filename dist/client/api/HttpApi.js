@@ -289,12 +289,7 @@ class HttpApi {
             });
         }
         else if (method === "sendBoc") {
-            res = await axios_1.default.post(this.endpoint, JSON.stringify({
-                id: "1",
-                jsonrpc: "2.0",
-                method: method,
-                params: body,
-            }), {
+            res = await axios_1.default.post(this.endpoint, body, {
                 headers,
                 timeout: this.parameters.timeout,
                 adapter: this.parameters.adapter,

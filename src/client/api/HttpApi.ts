@@ -453,20 +453,11 @@ export class HttpApi {
         }
       );
     } else if (method === "sendBoc") {
-      res = await axios.post<{ ok: boolean; result: T }>(
-        this.endpoint,
-        JSON.stringify({
-          id: "1",
-          jsonrpc: "2.0",
-          method: method,
-          params: body,
-        }),
-        {
-          headers,
-          timeout: this.parameters.timeout,
-          adapter: this.parameters.adapter,
-        }
-      );
+      res = await axios.post<{ ok: boolean; result: T }>(this.endpoint, body, {
+        headers,
+        timeout: this.parameters.timeout,
+        adapter: this.parameters.adapter,
+      });
     }
 
     if (res.status !== 200 || !res.data.ok) {
