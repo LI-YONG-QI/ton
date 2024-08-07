@@ -120,7 +120,6 @@ export class WalletContractV4 implements Contract {
     }
   ) {
     let transfer = this.createTransfer(args);
-    console.log("Li you did it !!!!");
     await this.send(provider, transfer);
   }
 
@@ -130,6 +129,7 @@ export class WalletContractV4 implements Contract {
   createTransfer<T extends Wallet4SendArgsSigned | Wallet4SendArgsSignable>(
     args: T
   ) {
+    console.log("Li you did it !!!!");
     return createWalletTransferV4<T>({
       ...args,
       sendMode: args.sendMode ?? SendMode.PAY_GAS_SEPARATELY,
