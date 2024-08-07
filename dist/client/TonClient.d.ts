@@ -171,9 +171,9 @@ export declare class TonClient {
         initData: Cell | null;
         ignoreSignature: boolean;
     }): Promise<{
-        '@type': "query.fees";
+        "@type": "query.fees";
         source_fees: {
-            '@type': "fees";
+            "@type": "fees";
             in_fwd_fee: number;
             storage_fee: number;
             gas_fee: number;

@@ -6,10 +6,10 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import { TonCache } from './TonCache';
-import { AxiosAdapter } from 'axios';
-import { Address, Cell, TupleItem } from '@ton/core';
-import { z } from 'zod';
+import { TonCache } from "./TonCache";
+import { AxiosAdapter } from "axios";
+import { Address, Cell, TupleItem } from "@ton/core";
+import { z } from "zod";
 declare const message: z.ZodObject<{
     source: z.ZodString;
     destination: z.ZodString;
@@ -19,40 +19,40 @@ declare const message: z.ZodObject<{
     created_lt: z.ZodString;
     body_hash: z.ZodString;
     msg_data: z.ZodUnion<[z.ZodObject<{
-        '@type': z.ZodLiteral<"msg.dataRaw">;
+        "@type": z.ZodLiteral<"msg.dataRaw">;
         body: z.ZodString;
     }, "strip", z.ZodTypeAny, {
-        '@type': "msg.dataRaw";
+        "@type": "msg.dataRaw";
         body: string;
     }, {
-        '@type': "msg.dataRaw";
+        "@type": "msg.dataRaw";
         body: string;
     }>, z.ZodObject<{
-        '@type': z.ZodLiteral<"msg.dataText">;
+        "@type": z.ZodLiteral<"msg.dataText">;
         text: z.ZodString;
     }, "strip", z.ZodTypeAny, {
-        '@type': "msg.dataText";
+        "@type": "msg.dataText";
         text: string;
     }, {
-        '@type': "msg.dataText";
+        "@type": "msg.dataText";
         text: string;
     }>, z.ZodObject<{
-        '@type': z.ZodLiteral<"msg.dataDecryptedText">;
+        "@type": z.ZodLiteral<"msg.dataDecryptedText">;
         text: z.ZodString;
     }, "strip", z.ZodTypeAny, {
-        '@type': "msg.dataDecryptedText";
+        "@type": "msg.dataDecryptedText";
         text: string;
     }, {
-        '@type': "msg.dataDecryptedText";
+        "@type": "msg.dataDecryptedText";
         text: string;
     }>, z.ZodObject<{
-        '@type': z.ZodLiteral<"msg.dataEncryptedText">;
+        "@type": z.ZodLiteral<"msg.dataEncryptedText">;
         text: z.ZodString;
     }, "strip", z.ZodTypeAny, {
-        '@type': "msg.dataEncryptedText";
+        "@type": "msg.dataEncryptedText";
         text: string;
     }, {
-        '@type': "msg.dataEncryptedText";
+        "@type": "msg.dataEncryptedText";
         text: string;
     }>]>;
     message: z.ZodOptional<z.ZodString>;
@@ -65,16 +65,16 @@ declare const message: z.ZodObject<{
     created_lt: string;
     body_hash: string;
     msg_data: {
-        '@type': "msg.dataRaw";
+        "@type": "msg.dataRaw";
         body: string;
     } | {
-        '@type': "msg.dataText";
+        "@type": "msg.dataText";
         text: string;
     } | {
-        '@type': "msg.dataDecryptedText";
+        "@type": "msg.dataDecryptedText";
         text: string;
     } | {
-        '@type': "msg.dataEncryptedText";
+        "@type": "msg.dataEncryptedText";
         text: string;
     };
     message?: string | undefined;
@@ -87,16 +87,16 @@ declare const message: z.ZodObject<{
     created_lt: string;
     body_hash: string;
     msg_data: {
-        '@type': "msg.dataRaw";
+        "@type": "msg.dataRaw";
         body: string;
     } | {
-        '@type': "msg.dataText";
+        "@type": "msg.dataText";
         text: string;
     } | {
-        '@type': "msg.dataDecryptedText";
+        "@type": "msg.dataDecryptedText";
         text: string;
     } | {
-        '@type': "msg.dataEncryptedText";
+        "@type": "msg.dataEncryptedText";
         text: string;
     };
     message?: string | undefined;
@@ -126,40 +126,40 @@ declare const getTransactions: z.ZodArray<z.ZodObject<{
         created_lt: z.ZodString;
         body_hash: z.ZodString;
         msg_data: z.ZodUnion<[z.ZodObject<{
-            '@type': z.ZodLiteral<"msg.dataRaw">;
+            "@type": z.ZodLiteral<"msg.dataRaw">;
             body: z.ZodString;
         }, "strip", z.ZodTypeAny, {
-            '@type': "msg.dataRaw";
+            "@type": "msg.dataRaw";
             body: string;
         }, {
-            '@type': "msg.dataRaw";
+            "@type": "msg.dataRaw";
             body: string;
         }>, z.ZodObject<{
-            '@type': z.ZodLiteral<"msg.dataText">;
+            "@type": z.ZodLiteral<"msg.dataText">;
             text: z.ZodString;
         }, "strip", z.ZodTypeAny, {
-            '@type': "msg.dataText";
+            "@type": "msg.dataText";
             text: string;
         }, {
-            '@type': "msg.dataText";
+            "@type": "msg.dataText";
             text: string;
         }>, z.ZodObject<{
-            '@type': z.ZodLiteral<"msg.dataDecryptedText">;
+            "@type": z.ZodLiteral<"msg.dataDecryptedText">;
             text: z.ZodString;
         }, "strip", z.ZodTypeAny, {
-            '@type': "msg.dataDecryptedText";
+            "@type": "msg.dataDecryptedText";
             text: string;
         }, {
-            '@type': "msg.dataDecryptedText";
+            "@type": "msg.dataDecryptedText";
             text: string;
         }>, z.ZodObject<{
-            '@type': z.ZodLiteral<"msg.dataEncryptedText">;
+            "@type": z.ZodLiteral<"msg.dataEncryptedText">;
             text: z.ZodString;
         }, "strip", z.ZodTypeAny, {
-            '@type': "msg.dataEncryptedText";
+            "@type": "msg.dataEncryptedText";
             text: string;
         }, {
-            '@type': "msg.dataEncryptedText";
+            "@type": "msg.dataEncryptedText";
             text: string;
         }>]>;
         message: z.ZodOptional<z.ZodString>;
@@ -172,16 +172,16 @@ declare const getTransactions: z.ZodArray<z.ZodObject<{
         created_lt: string;
         body_hash: string;
         msg_data: {
-            '@type': "msg.dataRaw";
+            "@type": "msg.dataRaw";
             body: string;
         } | {
-            '@type': "msg.dataText";
+            "@type": "msg.dataText";
             text: string;
         } | {
-            '@type': "msg.dataDecryptedText";
+            "@type": "msg.dataDecryptedText";
             text: string;
         } | {
-            '@type': "msg.dataEncryptedText";
+            "@type": "msg.dataEncryptedText";
             text: string;
         };
         message?: string | undefined;
@@ -194,16 +194,16 @@ declare const getTransactions: z.ZodArray<z.ZodObject<{
         created_lt: string;
         body_hash: string;
         msg_data: {
-            '@type': "msg.dataRaw";
+            "@type": "msg.dataRaw";
             body: string;
         } | {
-            '@type': "msg.dataText";
+            "@type": "msg.dataText";
             text: string;
         } | {
-            '@type': "msg.dataDecryptedText";
+            "@type": "msg.dataDecryptedText";
             text: string;
         } | {
-            '@type': "msg.dataEncryptedText";
+            "@type": "msg.dataEncryptedText";
             text: string;
         };
         message?: string | undefined;
@@ -217,40 +217,40 @@ declare const getTransactions: z.ZodArray<z.ZodObject<{
         created_lt: z.ZodString;
         body_hash: z.ZodString;
         msg_data: z.ZodUnion<[z.ZodObject<{
-            '@type': z.ZodLiteral<"msg.dataRaw">;
+            "@type": z.ZodLiteral<"msg.dataRaw">;
             body: z.ZodString;
         }, "strip", z.ZodTypeAny, {
-            '@type': "msg.dataRaw";
+            "@type": "msg.dataRaw";
             body: string;
         }, {
-            '@type': "msg.dataRaw";
+            "@type": "msg.dataRaw";
             body: string;
         }>, z.ZodObject<{
-            '@type': z.ZodLiteral<"msg.dataText">;
+            "@type": z.ZodLiteral<"msg.dataText">;
             text: z.ZodString;
         }, "strip", z.ZodTypeAny, {
-            '@type': "msg.dataText";
+            "@type": "msg.dataText";
             text: string;
         }, {
-            '@type': "msg.dataText";
+            "@type": "msg.dataText";
             text: string;
         }>, z.ZodObject<{
-            '@type': z.ZodLiteral<"msg.dataDecryptedText">;
+            "@type": z.ZodLiteral<"msg.dataDecryptedText">;
             text: z.ZodString;
         }, "strip", z.ZodTypeAny, {
-            '@type': "msg.dataDecryptedText";
+            "@type": "msg.dataDecryptedText";
             text: string;
         }, {
-            '@type': "msg.dataDecryptedText";
+            "@type": "msg.dataDecryptedText";
             text: string;
         }>, z.ZodObject<{
-            '@type': z.ZodLiteral<"msg.dataEncryptedText">;
+            "@type": z.ZodLiteral<"msg.dataEncryptedText">;
             text: z.ZodString;
         }, "strip", z.ZodTypeAny, {
-            '@type': "msg.dataEncryptedText";
+            "@type": "msg.dataEncryptedText";
             text: string;
         }, {
-            '@type': "msg.dataEncryptedText";
+            "@type": "msg.dataEncryptedText";
             text: string;
         }>]>;
         message: z.ZodOptional<z.ZodString>;
@@ -263,16 +263,16 @@ declare const getTransactions: z.ZodArray<z.ZodObject<{
         created_lt: string;
         body_hash: string;
         msg_data: {
-            '@type': "msg.dataRaw";
+            "@type": "msg.dataRaw";
             body: string;
         } | {
-            '@type': "msg.dataText";
+            "@type": "msg.dataText";
             text: string;
         } | {
-            '@type': "msg.dataDecryptedText";
+            "@type": "msg.dataDecryptedText";
             text: string;
         } | {
-            '@type': "msg.dataEncryptedText";
+            "@type": "msg.dataEncryptedText";
             text: string;
         };
         message?: string | undefined;
@@ -285,16 +285,16 @@ declare const getTransactions: z.ZodArray<z.ZodObject<{
         created_lt: string;
         body_hash: string;
         msg_data: {
-            '@type': "msg.dataRaw";
+            "@type": "msg.dataRaw";
             body: string;
         } | {
-            '@type': "msg.dataText";
+            "@type": "msg.dataText";
             text: string;
         } | {
-            '@type': "msg.dataDecryptedText";
+            "@type": "msg.dataDecryptedText";
             text: string;
         } | {
-            '@type': "msg.dataEncryptedText";
+            "@type": "msg.dataEncryptedText";
             text: string;
         };
         message?: string | undefined;
@@ -318,16 +318,16 @@ declare const getTransactions: z.ZodArray<z.ZodObject<{
         created_lt: string;
         body_hash: string;
         msg_data: {
-            '@type': "msg.dataRaw";
+            "@type": "msg.dataRaw";
             body: string;
         } | {
-            '@type': "msg.dataText";
+            "@type": "msg.dataText";
             text: string;
         } | {
-            '@type': "msg.dataDecryptedText";
+            "@type": "msg.dataDecryptedText";
             text: string;
         } | {
-            '@type': "msg.dataEncryptedText";
+            "@type": "msg.dataEncryptedText";
             text: string;
         };
         message?: string | undefined;
@@ -341,16 +341,16 @@ declare const getTransactions: z.ZodArray<z.ZodObject<{
         created_lt: string;
         body_hash: string;
         msg_data: {
-            '@type': "msg.dataRaw";
+            "@type": "msg.dataRaw";
             body: string;
         } | {
-            '@type': "msg.dataText";
+            "@type": "msg.dataText";
             text: string;
         } | {
-            '@type': "msg.dataDecryptedText";
+            "@type": "msg.dataDecryptedText";
             text: string;
         } | {
-            '@type': "msg.dataEncryptedText";
+            "@type": "msg.dataEncryptedText";
             text: string;
         };
         message?: string | undefined;
@@ -374,16 +374,16 @@ declare const getTransactions: z.ZodArray<z.ZodObject<{
         created_lt: string;
         body_hash: string;
         msg_data: {
-            '@type': "msg.dataRaw";
+            "@type": "msg.dataRaw";
             body: string;
         } | {
-            '@type': "msg.dataText";
+            "@type": "msg.dataText";
             text: string;
         } | {
-            '@type': "msg.dataDecryptedText";
+            "@type": "msg.dataDecryptedText";
             text: string;
         } | {
-            '@type': "msg.dataEncryptedText";
+            "@type": "msg.dataEncryptedText";
             text: string;
         };
         message?: string | undefined;
@@ -397,16 +397,16 @@ declare const getTransactions: z.ZodArray<z.ZodObject<{
         created_lt: string;
         body_hash: string;
         msg_data: {
-            '@type': "msg.dataRaw";
+            "@type": "msg.dataRaw";
             body: string;
         } | {
-            '@type': "msg.dataText";
+            "@type": "msg.dataText";
             text: string;
         } | {
-            '@type': "msg.dataDecryptedText";
+            "@type": "msg.dataDecryptedText";
             text: string;
         } | {
-            '@type': "msg.dataEncryptedText";
+            "@type": "msg.dataEncryptedText";
             text: string;
         };
         message?: string | undefined;
@@ -443,12 +443,12 @@ export declare class HttpApi {
         balance: string | number;
         state: "active" | "uninitialized" | "frozen";
         last_transaction_id: {
-            '@type': "internal.transactionId";
+            "@type": "internal.transactionId";
             lt: string;
             hash: string;
         };
         block_id: {
-            '@type': "ton.blockIdExt";
+            "@type": "ton.blockIdExt";
             workchain: number;
             shard: string;
             seqno: number;
@@ -483,16 +483,16 @@ export declare class HttpApi {
             created_lt: string;
             body_hash: string;
             msg_data: {
-                '@type': "msg.dataRaw";
+                "@type": "msg.dataRaw";
                 body: string;
             } | {
-                '@type': "msg.dataText";
+                "@type": "msg.dataText";
                 text: string;
             } | {
-                '@type': "msg.dataDecryptedText";
+                "@type": "msg.dataDecryptedText";
                 text: string;
             } | {
-                '@type': "msg.dataEncryptedText";
+                "@type": "msg.dataEncryptedText";
                 text: string;
             };
             message?: string | undefined;
@@ -506,16 +506,16 @@ export declare class HttpApi {
             created_lt: string;
             body_hash: string;
             msg_data: {
-                '@type': "msg.dataRaw";
+                "@type": "msg.dataRaw";
                 body: string;
             } | {
-                '@type': "msg.dataText";
+                "@type": "msg.dataText";
                 text: string;
             } | {
-                '@type': "msg.dataDecryptedText";
+                "@type": "msg.dataDecryptedText";
                 text: string;
             } | {
-                '@type': "msg.dataEncryptedText";
+                "@type": "msg.dataEncryptedText";
                 text: string;
             };
             message?: string | undefined;
@@ -524,7 +524,7 @@ export declare class HttpApi {
     getMasterchainInfo(): Promise<{
         state_root_hash: string;
         last: {
-            '@type': "ton.blockIdExt";
+            "@type": "ton.blockIdExt";
             workchain: number;
             shard: string;
             seqno: number;
@@ -532,7 +532,7 @@ export declare class HttpApi {
             file_hash: string;
         };
         init: {
-            '@type': "ton.blockIdExt";
+            "@type": "ton.blockIdExt";
             workchain: number;
             shard: string;
             seqno: number;
@@ -541,7 +541,7 @@ export declare class HttpApi {
         };
     }>;
     getShards(seqno: number): Promise<{
-        '@type': "ton.blockIdExt";
+        "@type": "ton.blockIdExt";
         workchain: number;
         shard: string;
         seqno: number;
@@ -550,7 +550,7 @@ export declare class HttpApi {
     }[]>;
     getBlockTransactions(workchain: number, seqno: number, shard: string): Promise<{
         id: {
-            '@type': "ton.blockIdExt";
+            "@type": "ton.blockIdExt";
             workchain: number;
             shard: string;
             seqno: number;
@@ -560,7 +560,7 @@ export declare class HttpApi {
         req_count: number;
         incomplete: boolean;
         transactions: {
-            '@type': "blocks.shortTxId";
+            "@type": "blocks.shortTxId";
             lt: string;
             hash: string;
             mode: number;
@@ -586,16 +586,16 @@ export declare class HttpApi {
             created_lt: string;
             body_hash: string;
             msg_data: {
-                '@type': "msg.dataRaw";
+                "@type": "msg.dataRaw";
                 body: string;
             } | {
-                '@type': "msg.dataText";
+                "@type": "msg.dataText";
                 text: string;
             } | {
-                '@type': "msg.dataDecryptedText";
+                "@type": "msg.dataDecryptedText";
                 text: string;
             } | {
-                '@type': "msg.dataEncryptedText";
+                "@type": "msg.dataEncryptedText";
                 text: string;
             };
             message?: string | undefined;
@@ -609,16 +609,16 @@ export declare class HttpApi {
             created_lt: string;
             body_hash: string;
             msg_data: {
-                '@type': "msg.dataRaw";
+                "@type": "msg.dataRaw";
                 body: string;
             } | {
-                '@type': "msg.dataText";
+                "@type": "msg.dataText";
                 text: string;
             } | {
-                '@type': "msg.dataDecryptedText";
+                "@type": "msg.dataDecryptedText";
                 text: string;
             } | {
-                '@type': "msg.dataEncryptedText";
+                "@type": "msg.dataEncryptedText";
                 text: string;
             };
             message?: string | undefined;
@@ -636,9 +636,9 @@ export declare class HttpApi {
         initData: Cell | null;
         ignoreSignature: boolean;
     }): Promise<{
-        '@type': "query.fees";
+        "@type": "query.fees";
         source_fees: {
-            '@type': "fees";
+            "@type": "fees";
             in_fwd_fee: number;
             storage_fee: number;
             gas_fee: number;
@@ -664,16 +664,16 @@ export declare class HttpApi {
             created_lt: string;
             body_hash: string;
             msg_data: {
-                '@type': "msg.dataRaw";
+                "@type": "msg.dataRaw";
                 body: string;
             } | {
-                '@type': "msg.dataText";
+                "@type": "msg.dataText";
                 text: string;
             } | {
-                '@type': "msg.dataDecryptedText";
+                "@type": "msg.dataDecryptedText";
                 text: string;
             } | {
-                '@type': "msg.dataEncryptedText";
+                "@type": "msg.dataEncryptedText";
                 text: string;
             };
             message?: string | undefined;
@@ -687,16 +687,16 @@ export declare class HttpApi {
             created_lt: string;
             body_hash: string;
             msg_data: {
-                '@type': "msg.dataRaw";
+                "@type": "msg.dataRaw";
                 body: string;
             } | {
-                '@type': "msg.dataText";
+                "@type": "msg.dataText";
                 text: string;
             } | {
-                '@type': "msg.dataDecryptedText";
+                "@type": "msg.dataDecryptedText";
                 text: string;
             } | {
-                '@type': "msg.dataEncryptedText";
+                "@type": "msg.dataEncryptedText";
                 text: string;
             };
             message?: string | undefined;
@@ -721,16 +721,16 @@ export declare class HttpApi {
             created_lt: string;
             body_hash: string;
             msg_data: {
-                '@type': "msg.dataRaw";
+                "@type": "msg.dataRaw";
                 body: string;
             } | {
-                '@type': "msg.dataText";
+                "@type": "msg.dataText";
                 text: string;
             } | {
-                '@type': "msg.dataDecryptedText";
+                "@type": "msg.dataDecryptedText";
                 text: string;
             } | {
-                '@type': "msg.dataEncryptedText";
+                "@type": "msg.dataEncryptedText";
                 text: string;
             };
             message?: string | undefined;
@@ -744,16 +744,16 @@ export declare class HttpApi {
             created_lt: string;
             body_hash: string;
             msg_data: {
-                '@type': "msg.dataRaw";
+                "@type": "msg.dataRaw";
                 body: string;
             } | {
-                '@type': "msg.dataText";
+                "@type": "msg.dataText";
                 text: string;
             } | {
-                '@type': "msg.dataDecryptedText";
+                "@type": "msg.dataDecryptedText";
                 text: string;
             } | {
-                '@type': "msg.dataEncryptedText";
+                "@type": "msg.dataEncryptedText";
                 text: string;
             };
             message?: string | undefined;
