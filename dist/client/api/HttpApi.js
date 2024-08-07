@@ -277,24 +277,29 @@ class HttpApi {
         if (this.parameters.apiKey) {
             headers["X-API-Key"] = this.parameters.apiKey;
         }
-        let res = await axios_1.default.get(this.endpoint + method, {
-            params: {
-                address: body.address,
-            },
-            headers,
+        let res;
+        if (method === "getAddressInformation") {
+            res = await axios_1.default.get(this.endpoint + method, {
+                params: {
+                    address: body.address,
+                },
+                headers,
+                timeout: this.parameters.timeout,
+                adapter: this.parameters.adapter,
+            });
         }
-        //   JSON.stringify({
-        //     id: "1",
-        //     jsonrpc: "2.0",
-        //     method: method,
-        //     params: body,
-        //   }),
-        //   {
-        //     headers,
-        //     timeout: this.parameters.timeout,
-        //     adapter: this.parameters.adapter,
-        //   }
-        );
+        else if (method === "sendBoc") {
+            res = await axios_1.default.post(this.endpoint, JSON.stringify({
+                id: "1",
+                jsonrpc: "2.0",
+                method: method,
+                params: body,
+            }), {
+                headers,
+                timeout: this.parameters.timeout,
+                adapter: this.parameters.adapter,
+            });
+        }
         if (res.status !== 200 || !res.data.ok) {
             throw Error("Received error: " + JSON.stringify(res.data));
         }
