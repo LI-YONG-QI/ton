@@ -438,7 +438,7 @@ export class HttpApi {
       headers["X-API-Key"] = this.parameters.apiKey;
     }
     let res = await axios.get<{ ok: boolean; result: T }>(
-      this.endpoint,
+      this.endpoint + method,
       {
         params: {
           address: body.address,

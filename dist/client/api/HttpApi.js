@@ -277,7 +277,7 @@ class HttpApi {
         if (this.parameters.apiKey) {
             headers["X-API-Key"] = this.parameters.apiKey;
         }
-        let res = await axios_1.default.get(this.endpoint, {
+        let res = await axios_1.default.get(this.endpoint + method, {
             params: {
                 address: body.address,
             },
